@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+</head>
+<body>
+    <center>
+        <h1>QR Code Generator</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="data">Enter data to encode:</label>
+            <input type="text" id="data" name="data" required>
+            <button type="submit">Generate</button>
+        </form>
+        {% if qr_code %}
+        <img src="{{ qr_code.url }}" alt="QR Code">
+        {% endif %}
+    </center>
+</body>
+</html>
