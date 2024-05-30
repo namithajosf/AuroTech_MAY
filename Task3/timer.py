@@ -6,6 +6,7 @@ class Timer:
     def __init__(self, parent):
         self.parent = parent
         self.parent.title("Timer & Stopwatch")
+        self.parent.geometry("400x200")
 
         self.time_left_var = tk.StringVar()
         self.time_left_var.set("00:00:00")
@@ -25,11 +26,14 @@ class Timer:
         self.entry_time = tk.Entry(parent, textvariable=self.time_left_var, width=10)
         self.entry_time.pack()
 
-        self.start_timer_button = tk.Button(parent, text='Start', command=self.start_timer)
-        self.start_timer_button.pack()
+        self.timer_button_frame = tk.Frame(parent)
+        self.timer_button_frame.pack()
 
-        self.stop_timer_button = tk.Button(parent, text='Stop', command=self.stop_timer)
-        self.stop_timer_button.pack()
+        self.start_timer_button = tk.Button(self.timer_button_frame, text='Start', command=self.start_timer)
+        self.start_timer_button.pack(side=tk.LEFT)
+
+        self.stop_timer_button = tk.Button(self.timer_button_frame, text='Stop', command=self.stop_timer)
+        self.stop_timer_button.pack(side=tk.LEFT)
 
         # Stopwatch UI
         self.stopwatch_label = tk.Label(parent, text='Stopwatch')
@@ -38,14 +42,17 @@ class Timer:
         self.time_elapsed_label = tk.Label(parent, textvariable=self.time_elapsed)
         self.time_elapsed_label.pack()
 
-        self.start_stopwatch_button = tk.Button(parent, text='Start', command=self.start_stopwatch)
-        self.start_stopwatch_button.pack()
+        self.stopwatch_button_frame = tk.Frame(parent)
+        self.stopwatch_button_frame.pack()
 
-        self.pause_stopwatch_button = tk.Button(parent, text='Pause', command=self.pause_stopwatch)
-        self.pause_stopwatch_button.pack()
+        self.start_stopwatch_button = tk.Button(self.stopwatch_button_frame, text='Start', command=self.start_stopwatch)
+        self.start_stopwatch_button.pack(side=tk.LEFT)
 
-        self.reset_stopwatch_button = tk.Button(parent, text='Reset', command=self.reset_stopwatch)
-        self.reset_stopwatch_button.pack()
+        self.pause_stopwatch_button = tk.Button(self.stopwatch_button_frame, text='Pause', command=self.pause_stopwatch)
+        self.pause_stopwatch_button.pack(side=tk.LEFT)
+
+        self.reset_stopwatch_button = tk.Button(self.stopwatch_button_frame, text='Reset', command=self.reset_stopwatch)
+        self.reset_stopwatch_button.pack(side=tk.LEFT)
 
     def start_timer(self):
         try:
